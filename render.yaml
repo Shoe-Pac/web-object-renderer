@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: frontend
+    env: static
+    buildCommand: pnpm exec nx build frontend
+    staticPublishPath: dist/apps/frontend
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

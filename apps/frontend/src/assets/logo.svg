@@ -1,0 +1,40 @@
+<svg width="500" height="200" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+        @keyframes slice {
+            0% { clip-path: inset(0 0 0 0); opacity: 1; }
+            25% { clip-path: inset(35% 0 0 0); opacity: 0.7; }
+            50% { clip-path: inset(0 0 70% 0); opacity: 0.7; }
+            75% { clip-path: inset(0 50% 0 0); opacity: 0.7; }
+            100% { clip-path: inset(0 0 0 50%); opacity: 1; }
+        }
+
+        svg {
+            width: 500px;
+            height: 200px;
+            animation: slice 10s infinite ease-in-out; 
+        }
+
+        .title, .subtitle {
+            font-family: 'Courier New', Courier, monospace;
+            text-anchor: middle;
+        }
+
+        .title {
+            font-size: 104px;
+            fill: url(#gradient);
+        }
+
+        .subtitle {
+            font-size: 25px;
+            fill: url(#gradient);
+        }
+    </style>
+    <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:rgb(51, 153, 255);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgb(0, 255, 153);stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <text class="title" x="150" y="40"> W O R </text>
+        <text class="subtitle" x="150" y="70"> Web Object Renderer </text>
+</svg>

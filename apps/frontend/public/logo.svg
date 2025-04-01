@@ -1,0 +1,55 @@
+<svg width="500" height="200" viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+        @keyframes slice {
+            0% { clip-path: inset(0 0 0 0); opacity: 1; }
+
+            10% { clip-path: inset(30% 0 0 0); opacity: 0.7; }
+            20% { clip-path: inset(0 0 0 0); opacity: 1; }
+
+            35% { clip-path: inset(0 0 70% 0); opacity: 0.7; }
+            47% { clip-path: inset(0 0 0 0); opacity: 1; }
+
+            62% { clip-path: inset(0 50% 0 0); opacity: 0.7; }
+            75% { clip-path: inset(0 0 0 0); opacity: 1; }
+
+            87% { clip-path: inset(0 0 0 50%); opacity: 0.7; }
+            100% { clip-path: inset(0 0 0 0); opacity: 1; }
+        }
+        svg {
+            width: 500px;
+            height: 200px;
+            animation: slice 20s infinite ease-in-out; 
+        }
+        .title, .subtitle {
+            font-family: 'Courier New', Courier, monospace;
+            text-anchor: middle;
+        }
+        .title {
+            font-size: 104px;
+            fill: url(#gradient);
+        }
+        .subtitle {
+            font-size: 25px;
+            fill: url(#gradient);
+        }
+    </style>
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:rgb(51, 153, 255);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgb(0, 255, 153);stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- 3D efekt za naslov -->
+    <text class="title" x="160" y="40" style="fill: rgba(0, 0, 0, 0.1); transform: translate(6px, 6px);" > W O R </text>
+    <text class="title" x="160" y="40" style="fill: rgba(87, 85, 85, 0.2); transform: translate(5px, 5px);" > W O R </text>
+    <text class="title" x="160" y="40" style="fill: rgba(135, 132, 132, 0.2); transform: translate(4px, 4px);" > W O R </text>
+    <text class="title" x="160" y="40" style="fill: rgba(186, 183, 183, 0.2); transform: translate(3px, 3px);" > W O R </text>
+    <text class="title" x="160" y="40" style="fill: rgba(241, 237, 237, 0.3); transform: translate(2px, 2px);" > W O R </text>
+    <text class="title" x="160" y="40" style="fill: rgba(255, 254, 254, 0.3); transform: translate(1px,1px);" > W O R </text>
+
+    <text class="title" x="160" y="40" fill="url(#gradient)"> W O R </text>
+
+    <!-- Podnaslov -->
+    <text class="subtitle" x="160" y="70"> Web Object Renderer </text>
+</svg>

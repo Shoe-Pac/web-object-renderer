@@ -1,0 +1,20 @@
+<svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+       
+        .title {
+            font-family: 'Courier New', Courier, monospace;
+            text-anchor: middle;
+            font-size: 170px;
+            fill: url(#gradient);
+        }
+        
+    </style>
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:rgb(51, 153, 255);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgb(0, 255, 153);stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <text class="title" x="160" y="100" fill="url(#gradient)"> WOR </text>
+</svg>
