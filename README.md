@@ -5,7 +5,7 @@ WOR is a full-stack application that enables the visualization and manipulation 
 The application is also wrapped with user registration, login, authentication, and profile data modification.
 
 
-A **demo version** of the application is publicly available at a provided link, and it can also be run locally (see instructions below).
+A **demo version** of the application is publicly available at [this link](https://web-object-renderer.onrender.com/), and it can also be run locally ( see instructions below ).
 
 The **main motivation** behind this repository is to play with and showcase the possible use of various modern and relevant technologies in the software engineering industry. The repository should be viewed as an experimental playground where different technologies are intentionally used to achieve similar functionalities, often without strict (technical) consistency, but in the same time consistent in coding as much as possible.
 
@@ -64,16 +64,60 @@ After installing project dependencies with `pnpm` (or similar) and before runnin
 
 1. Create an AWS S3 bucket.
 2. Generate **AWS access keys** for programmatic access.
-3. Define these keys in the backend application's `.env` file as follows:
-
+3. Define these keys in the backend application's `.env` file
+4. Configure S3 bucket permission policies ( cors, read/write access etc. )
 ```sh
-AWS_ACCESS_KEY_ID=your-access-key-id
-AWS_SECRET_ACCESS_KEY=your-secret-access-key
-AWS_REGION=your-region
-AWS_BUCKET_NAME=your-bucket-name
+CORS configuration json example: 
+
+[
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "GET",
+            "PUT",
+            "POST",
+            "DELETE"
+        ],
+        "AllowedOrigins": [
+            "your-frontend-url"
+        ],
+        "ExposeHeaders": []
+    }
+]
+
+BUCKET policy json example:
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::your-bucket-name/uploads/*",
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": "public-read"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::your-bucket-name/uploads/*"
+        }
+    ]
+}
 ```
 
 ### Running the Frontend
+Define .env.development like this
+```sh
+VITE_SERVER_API_URL=your-vite-server-url
+```
 To start the frontend application locally, use the following Nx command:
 ```sh
 pnpx nx serve frontend
@@ -85,6 +129,18 @@ pnpx nx build frontend
 ```
 
 ### Running the Backend
+Define .env with variables
+```sh
+JWT_SECRET=your-jwt-secret-key
+COOKIE_SECRET=your-secret-cookie
+BACKEND_SERVER_PORT=1234
+AWS_ACCESS_KEY_ID=your-access-key-id
+AWS_SECRET_ACCESS_KEY=your-secret-access-key
+AWS_REGION=your-region
+AWS_BUCKET_NAME=your-bucket-name
+MONGO_URI=your-mongodb-uri
+NODE_ENV=development
+```
 To start the backend application locally, use:
 ```sh
 pnpx nx serve backend

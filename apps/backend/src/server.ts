@@ -9,13 +9,15 @@ const startServer = async () => {
     await connectDB()
     console.log('Database connected successfully!')
 
-    console.log('Starting Apollo GraphQL server...')
-    await startApolloServer(app)
-    console.log(`Apollo GraphQL server running at http://localhost:${config.serverPort}/graphql`)
+    //Use dynamic port for production ( Renderer will set the port )
+    const port = process.env.PORT || config.serverPort
 
-    console.log('Starting Fastify server...')
-    await app.listen({ port: config.serverPort })
-    console.log(`Fastify server running at http://localhost:${config.serverPort}`)
+    console.log(`Starting Fastify server...`)
+    await app.listen({ port: Number(port) })
+    console.log(`Fastify server running at ${port}`)
+
+    await startApolloServer(app)
+    console.log(`Apollo GraphQL server running at ${port}/graphql`)
   } catch (error) {
     console.error('Error while starting server:', error)
     process.exit(1)
