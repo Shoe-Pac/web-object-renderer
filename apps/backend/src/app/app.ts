@@ -31,11 +31,11 @@ app.register(fastifyCookie, {
   parseOptions: {
     httpOnly: true,
     sameSite: 'none',
-    secure: process.env.NODE_ENV === 'production' ? true : false // 🚨 false za lokalni razvoj
+    secure: process.env.NODE_ENV === 'production'
   }
 })
 
-// Registracija REST ruta
+//REST routes registration
 app.register(authRoutes)
 app.register(filesRoutes)
 
