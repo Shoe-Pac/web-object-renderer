@@ -11,12 +11,28 @@ import { config } from './config'
 const app = Fastify({ logger: true, trustProxy: true })
 
 // CORS middleware
-app.register(cors, {
-  origin: ['https://web-object-renderer.onrender.com', 'http://localhost:4001'],
-  credentials: true, //allows sending cookies
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  preflight: true
+app.register(cors, (_instance) => {
+  return (req, callback) => {
+    let corsOptions: {
+      origin: string | boolean
+      credentials?: boolean
+      methods?: string[]
+      allowedHeaders?: string[]
+    }
+    const allowedOrigins = ['https://web-object-renderer.onrender.com', 'http://localhost:4001']
+
+    if (allowedOrigins.includes(req.headers.origin as string)) {
+      corsOptions = {
+        origin: req.headers.origin,
+        credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+      }
+    } else {
+      corsOptions = { origin: false } // Blokiraj nepoznate origin-e
+    }
+    callback(null, corsOptions)
+  }
 })
 
 // Multipart middleware
