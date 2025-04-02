@@ -12,7 +12,7 @@ const app = Fastify({ logger: true, trustProxy: true })
 
 // CORS middleware
 app.register(cors, {
-  origin: config.frontendUrl,
+  origin: ['https://web-object-renderer.onrender.com', 'http://localhost:4001'],
   credentials: true, //allows sending cookies
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
