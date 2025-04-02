@@ -2,8 +2,8 @@ services:
   - type: web
     name: frontend
     env: node
-    buildCommand: pnpm exec nx build frontend
-    startCommand: pnpm exec nx serve frontend
+    buildCommand: pnpm install && pnpm exec nx build frontend
+    startCommand: npx serve dist/apps/frontend
     staticPublishPath: dist/apps/frontend
     routes:
       - type: rewrite
@@ -17,7 +17,7 @@ services:
     name: backend
     env: node
     buildCommand: pnpm install && pnpm exec nx build backend
-    startCommand: pnpm exec nx serve backend
+    startCommand: npx serve dist/apps/backend
     envVars:
       - key: BACKEND_SERVER_PORT
         value: 10000 # Render automatically sets the PORT environment variable
