@@ -1,9 +1,9 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 
-const serverApiUrl: string = import.meta.env.VITE_SERVER_API_URL
+// const serverApiUrl: string = import.meta.env.VITE_SERVER_API_URL
 
 const httpLink = createHttpLink({
-  uri: `${serverApiUrl}/graphql`,
+  uri: `https://web-object-renderer-backend.onrender.com/graphql`,
   credentials: 'include' //For cookie-based authentication
 })
 
