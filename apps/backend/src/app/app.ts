@@ -15,7 +15,8 @@ app.register(cors, {
   origin: ['https://web-object-renderer.onrender.com', 'http://localhost:4001'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  preflight: true
 })
 
 app.addHook('onRequest', async (request, reply) => {
