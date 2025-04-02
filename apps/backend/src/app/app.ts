@@ -16,13 +16,15 @@ app.register(cors, {
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  preflight: true
+  preflight: true,
+  preflightContinue: true
 })
 
 app.addHook('onRequest', async (request, reply) => {
   reply.header('Access-Control-Allow-Origin', request.headers.origin || '*')
   reply.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
   reply.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  reply.header('Access-Control-Allow-Credentials', 'true') // Potrebno je ako koristiš cookies sa `credentials: true`
 })
 
 // Multipart middleware
