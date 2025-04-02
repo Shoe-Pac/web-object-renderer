@@ -12,12 +12,12 @@ const startServer = async () => {
     //Use dynamic port for production ( Renderer will set the port )
     const port = process.env.PORT || config.serverPort
 
+    await startApolloServer(app)
+    console.log(`Apollo GraphQL server running at ${port}/graphql`)
+
     console.log(`Starting Fastify server...`)
     await app.listen({ port: Number(port) })
     console.log(`Fastify server running at ${port}`)
-
-    await startApolloServer(app)
-    console.log(`Apollo GraphQL server running at ${port}/graphql`)
   } catch (error) {
     console.error('Error while starting server:', error)
     process.exit(1)

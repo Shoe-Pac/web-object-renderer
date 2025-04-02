@@ -100,7 +100,7 @@ jobs:
           name: Build frontend
           command: pnpm exec nx build frontend
       - run:
-          name: Deploy to Render
+          name: Deploy frontend to Render
           command: curl -X POST $https://api.render.com/deploy/srv-cvm0khm3jp1c738rqgm0?key=l3rweXFRhI4
 
   deploy-backend:
@@ -115,7 +115,7 @@ jobs:
           command: pnpm exec nx build backend
       - run:
           name: Deploy backend to Render
-          command: curl -X POST $RENDER_BACKEND_DEPLOY_HOOK
+          command: curl -X POST $https://api.render.com/deploy/srv-cvm56d3e5dus73afgv1g?key=tqkNKomp9x0
 
 
 workflows:
