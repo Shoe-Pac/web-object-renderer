@@ -28,12 +28,27 @@ export const login = async (request: FastifyRequest, reply: FastifyReply) => {
 
     //TODO production environment
     //Set HttpOnly Cookie
+    // reply.setCookie('token', token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === 'production' ? true : false, // false for local development
+    //   sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax', // "lax" for local development
+    //   path: '/'
+    // })
+
+    //temporary solutuion for ngrok
+    const origin = request.headers.origin || ''
+    const isLocalhost = origin.includes('localhost')
+
     reply.setCookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production' ? true : false, // false for local development
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax', // "lax" for local development
+      secure: !isLocalhost, // True za HTTPS (ngrok), False za localhost
+      sameSite: isLocalhost ? 'lax' : 'none', // Lax za localhost, None za ngrok
       path: '/'
+      // domain: isLocalhost ? undefined : '.ngrok-free.app' // Postavi domain samo za ngrok ako je potrebno
     })
+
+    console.log('Origin:', origin)
+    console.log('isLocalhost:', isLocalhost)
 
     return reply.send({ message: 'Login successful' })
   } catch (error) {

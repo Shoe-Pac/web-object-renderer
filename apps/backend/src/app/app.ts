@@ -12,7 +12,11 @@ const app = Fastify({ logger: true, trustProxy: true })
 
 // CORS middleware
 app.register(cors, {
-  origin: ['https://web-object-renderer.onrender.com', 'http://localhost:4001'],
+  origin: [
+    'https://web-object-renderer.onrender.com',
+    'http://localhost:4001',
+    'https://d6f6-188-129-80-141.ngrok-free.app'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
