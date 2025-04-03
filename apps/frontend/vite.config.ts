@@ -9,7 +9,8 @@ export default defineConfig({
     cacheDir: "../../node_modules/.vite/apps/frontend",
     server: {
         port: 4001,
-        host: "localhost"
+        host: "0.0.0.0",  // Ovo omogućava pristup s bilo koje IP adrese
+        allowedHosts: ["localhost", ".ngrok-free.app", 'web-object-renderer.onrender.com'] // Dozvoljava localhost i sve ngrok domene
     },
     preview: {
         port: 4300,

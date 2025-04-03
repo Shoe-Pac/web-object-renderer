@@ -14,6 +14,9 @@ export const verifyToken = async (request: FastifyRequest, reply: FastifyReply) 
   try {
     const token = request.cookies.token //Getting token from HttpOnly cookie
 
+    console.log('Cookie from request: ', request.cookies)
+    console.log('Token from cookie:', token)
+
     if (!token) {
       return reply.status(401).send({ error: 'No token provided' })
     }
