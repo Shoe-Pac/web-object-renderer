@@ -21,7 +21,7 @@ const Home = () => {
         }))
       }
     }
-  }, [location.state, userEmail])
+  }, [location.state, userEmail, setSnackBarContent])
 
   return (
     <>

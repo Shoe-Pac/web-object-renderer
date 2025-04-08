@@ -9,7 +9,7 @@ const startServer = async () => {
     await connectDB()
     console.log('Database connected successfully!')
 
-    //Use dynamic port for production ( Renderer will set the port )
+    //Use dynamic port for production ( Render will set the port )
     const port = process.env.PORT || config.serverPort
 
     await startApolloServer(app)

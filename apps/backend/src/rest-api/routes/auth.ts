@@ -8,5 +8,5 @@ export default async function authRoutes(app: FastifyInstance) {
   app.post('/logout', logout)
   app.post('/validate-password', validatePassword)
 
-  app.get('/authenticate', { preHandler: verifyToken }, authenticate) //Protected route
+  app.post('/authenticate', { preHandler: verifyToken }, authenticate) //Protected route
 }
