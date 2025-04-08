@@ -15,13 +15,13 @@ app.register(cors, {
   origin: [
     'https://web-object-renderer.onrender.com',
     'http://localhost:4001',
-    'https://d6f6-188-129-80-141.ngrok-free.app'
+    'https://b7fc-188-129-80-141.ngrok-free.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   preflight: true,
-  strictPreflight: false // Ovo može sprečiti dupli OPTIONS metod
+  strictPreflight: false
 })
 
 app.addHook('onSend', async (_request, reply, payload) => {
@@ -36,7 +36,6 @@ app.register(multipart, {
 })
 
 // Auth middleware
-app.register(jwt, { secret: config.jwtSecret })
 app.register(fastifyCookie, {
   secret: process.env.JWT_SECRET,
   parseOptions: {
@@ -45,6 +44,8 @@ app.register(fastifyCookie, {
     secure: process.env.NODE_ENV === 'production'
   }
 })
+
+app.register(jwt, { secret: config.jwtSecret })
 
 //REST routes registration
 app.register(authRoutes)

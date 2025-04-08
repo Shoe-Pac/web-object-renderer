@@ -14,7 +14,8 @@ export default defineConfig({
     },
     preview: {
         port: 4300,
-        host: "localhost"
+        host: "0.0.0.0",  // Ovo omogućava pristup s bilo koje IP adrese
+        allowedHosts: ["localhost", ".ngrok-free.app", '.onrender.com'] // Dozvoljava localhost i sve ngrok domene
     },
     plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(["*.md"])],
     // Uncomment this if you are using workers.

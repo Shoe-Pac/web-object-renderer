@@ -14,7 +14,8 @@ export const login = async (email: string, password: string) => {
 //Fetch user id through cookie token verification
 export const authenticate = async () => {
   const response = await fetch(`${serverApiUrl}/authenticate`, {
-    credentials: 'include'
+    credentials: 'include',
+    method: 'POST'
   })
 
   return response
