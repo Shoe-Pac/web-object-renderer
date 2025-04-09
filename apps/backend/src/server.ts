@@ -16,7 +16,7 @@ const startServer = async () => {
     console.log(`Apollo GraphQL server running at ${port}/graphql`)
 
     console.log(`Starting Fastify server...`)
-    await app.listen({ port: Number(port) })
+    await app.listen({ port: Number(port), host: '0.0.0.0' })
     console.log(`Fastify server running at ${port}`)
   } catch (error) {
     console.error('Error while starting server:', error)
