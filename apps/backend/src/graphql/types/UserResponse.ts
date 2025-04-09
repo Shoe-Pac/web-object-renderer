@@ -4,10 +4,10 @@ import { UserType } from './UserType'
 
 @ObjectType()
 export class UserResponse {
-  @Field()
+  @Field(() => Number)
   status: number
 
-  @Field()
+  @Field(() => String)
   message: string
 
   @Field(() => UserType, { nullable: true })
