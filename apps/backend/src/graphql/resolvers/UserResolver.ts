@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcryptjs'
 import { Arg, Mutation, Query, Resolver } from 'type-graphql'
 
 import { removeModelsFromAws } from '../../database/aws'
