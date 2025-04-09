@@ -2,18 +2,18 @@ import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class FileMetadataType {
-  @Field()
+  @Field(() => String)
   filename!: string
 
-  @Field()
+  @Field(() => String)
   fileUrl!: string
 
-  @Field()
+  @Field(() => String)
   name!: string
 
-  @Field()
+  @Field(() => String)
   category!: string
 
-  @Field()
+  @Field(() => Date, { nullable: true })
   uploadedAt?: Date
 }

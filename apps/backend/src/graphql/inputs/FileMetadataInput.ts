@@ -2,15 +2,15 @@ import { Field, InputType } from 'type-graphql'
 
 @InputType()
 export class FileMetadataInput {
-  @Field()
+  @Field(() => String)
   filename!: string
 
-  @Field()
+  @Field(() => String)
   fileUrl!: string
 
-  @Field()
+  @Field(() => String)
   name!: string
 
-  @Field()
+  @Field(() => String)
   category!: string
 }

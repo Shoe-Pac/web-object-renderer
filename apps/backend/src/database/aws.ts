@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv'
 import FileMetadata from './models/FileMetadata'
 import UserModel from './models/User'
 
-dotenv.config()
+dotenv.config({ path: 'apps/backend/.env' })
 
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY

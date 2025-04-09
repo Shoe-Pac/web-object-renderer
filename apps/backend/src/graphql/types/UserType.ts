@@ -7,16 +7,16 @@ export class UserType {
   @Field(() => ID)
   id!: string
 
-  @Field()
+  @Field(() => String)
   registeredName!: string
 
-  @Field()
+  @Field(() => String)
   name!: string
 
-  @Field()
+  @Field(() => String)
   email!: string
 
-  @Field()
+  @Field(() => String, { nullable: true })
   profileImage?: string
 
   @Field(() => [FileMetadataType], { nullable: true })

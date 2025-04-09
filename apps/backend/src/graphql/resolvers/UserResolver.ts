@@ -11,9 +11,9 @@ import { UserType } from '../types/UserType'
 export class UserResolver {
   @Mutation(() => UserResponse)
   async createUser(
-    @Arg('name') name: string,
-    @Arg('email') email: string,
-    @Arg('password') password: string
+    @Arg('name', () => String) name: string,
+    @Arg('email', () => String) email: string,
+    @Arg('password', () => String) password: string
   ): Promise<UserResponse> {
     const hashedPassword = await bcrypt.hash(password, 10)
     const existingUser = await UserModel.findOne({ email })
@@ -55,15 +55,14 @@ export class UserResolver {
 
   @Mutation(() => UserType)
   async updateUser(
-    @Arg('userId') userId: string,
-    @Arg('name', { nullable: true }) name?: string,
-    @Arg('email', { nullable: true }) email?: string,
-    @Arg('password', { nullable: true }) password?: string,
-    @Arg('profileImage', { nullable: true }) profileImage?: string,
+    @Arg('userId', () => String) userId: string,
+    @Arg('name', () => String, { nullable: true }) name?: string,
+    @Arg('email', () => String, { nullable: true }) email?: string,
+    @Arg('password', () => String, { nullable: true }) password?: string,
+    @Arg('profileImage', () => String, { nullable: true }) profileImage?: string,
     @Arg('fileMetadata', () => FileMetadataInput, { nullable: true })
     fileMetadata?: FileMetadataInput,
-    @Arg('modelsToRemove', () => [String], { nullable: true })
-    modelsToRemove?: string[]
+    @Arg('modelsToRemove', () => [String], { nullable: true }) modelsToRemove?: string[]
   ): Promise<UserType> {
     const user = await UserModel.findById(userId)
 
@@ -97,7 +96,7 @@ export class UserResolver {
   }
 
   @Query(() => UserType, { nullable: true })
-  async getUser(@Arg('userId') userId: string): Promise<UserType | null> {
+  async getUser(@Arg('userId', () => String) userId: string): Promise<UserType | null> {
     const user = await UserModel.findById(userId)
 
     if (!user) return null
