@@ -59,6 +59,9 @@ jobs:
           keys:
             - v1-deps-{{ checksum "pnpm-lock.yaml" }}
       - run:
+          name: Install dev tools 
+          command: pnpm install --ignore-scripts
+      - run:
           name: Build frontend
           command: pnpm exec nx build frontend
       - run:
@@ -72,6 +75,9 @@ jobs:
       - restore_cache:
           keys:
             - v1-deps-{{ checksum "pnpm-lock.yaml" }}
+      - run:
+          name: Install dev tools 
+          command: pnpm install --ignore-scripts
       - run:
           name: Build backend
           command: pnpm exec nx build backend
