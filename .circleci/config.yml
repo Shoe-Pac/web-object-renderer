@@ -33,7 +33,7 @@ jobs:
           command: pnpm exec playwright install
       - run:
           name: Run Playwright E2E tests
-          command: pnpm exec playwright test apps/frontend-e2e/src --config=apps/frontend-e2e/playwright.config.ts
+          command: npx playwright test apps/frontend-e2e/src --config=apps/frontend-e2e/playwright.config.ts
       - store_artifacts:
           path: playwright-report
           destination: playwright-report
