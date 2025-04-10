@@ -29,6 +29,9 @@ jobs:
           keys:
             - v1-deps-{{ checksum "pnpm-lock.yaml" }}
       - run:
+          name: Install dev tools (to get nx etc.)
+          command: pnpm install --ignore-scripts
+      - run:
           name: Run Playwright E2E tests
           command: pnpm exec nx run frontend-e2e:e2e
       - store_artifacts:
