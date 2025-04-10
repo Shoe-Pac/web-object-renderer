@@ -29,11 +29,11 @@ jobs:
           keys:
             - v1-deps-{{ checksum "pnpm-lock.yaml" }}
       - run:
-          name: Install NX CLI
-          command: pnpm add -g @nrwl/cli
+          name: Install Playwright
+          command: pnpm exec playwright install
       - run:
           name: Run Playwright E2E tests
-          command: pnpm exec nx run frontend-e2e:e2e
+          command: pnpm exec playwright test apps/frontend-e2e/src --config=apps/frontend-e2e/playwright.config.ts
       - store_artifacts:
           path: playwright-report
           destination: playwright-report
