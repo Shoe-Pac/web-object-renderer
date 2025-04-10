@@ -32,11 +32,8 @@ jobs:
           name: Install dev tools (to get nx etc.)
           command: pnpm install --ignore-scripts
       - run:
-          name: Install necessary libraries
-          command: sudo apt-get update && sudo apt-get install -y libepoxy0 libvpx7 libevent-2.1-7 libopus0 libfontconfig1 libfreetype6 libwebpmux3 libharfbuzz0b libjpeg8 libpng16-16 libgtk-4-1 libpangocairo-1.0-0 libpango-1.0-0 libgdk-pixbuf-2.0-0 libcairo-gobject2 libcairo2 libgraphene-1.0-0 libxslt1.1 liblcms2-2 libwoff2dec1 libgstreamer-plugins-base1.0-0 libgstreamer1.0-0 libgstaudio1.0-0 libgstvideo1.0-0 libgstaudio1.0-0
-      - run:
           name: Install Playwright Browsers
-          command: pnpm exec playwright install
+          command: pnpm exec playwright install install-deps
       - run:
           name: Run Playwright E2E tests
           command: pnpm exec nx run frontend-e2e:e2e
