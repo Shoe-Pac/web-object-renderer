@@ -36,8 +36,17 @@ jobs:
       #     name: Run backend tests
       #     command: pnpm exec nx run backend:test
       - run:
+          name: Install dev tools 
+          command: pnpm install --ignore-scripts
+      - run:
+          name: Install Playwright Browsers
+          command: pnpm exec playwright install
+      - run:
+          name: Install Playwright Browsers Deps
+          command: pnpm exec playwright install-deps
+      - run:
           name: Run Playwright E2E tests
-          command: pnpm exec playwright test apps/frontend-e2e/src --config=apps/frontend-e2e/playwright.config.ts
+          command: pnpm exec nx run frontend-e2e:e2e
       - store_artifacts:
           path: playwright-report
           destination: playwright-report
