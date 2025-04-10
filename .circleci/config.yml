@@ -28,14 +28,8 @@ jobs:
       - restore_cache:
           keys:
             - v1-deps-{{ checksum "pnpm-lock.yaml" }}
-      # - run:
-      #     name: Run frontend tests
-      #     command: pnpm exec nx run frontend:test
-      # - run:
-      #     name: Run backend tests
-      #     command: pnpm exec nx run backend:test
       - run:
-          name: Install dev tools 
+          name: Install dev tools (to get nx etc.)
           command: pnpm install --ignore-scripts
       - run:
           name: Install Playwright Browsers
@@ -58,7 +52,7 @@ jobs:
           keys:
             - v1-deps-{{ checksum "pnpm-lock.yaml" }}
       - run:
-          name: Install dev tools 
+          name: Install dev tools (to get nx etc.)
           command: pnpm install --ignore-scripts
       - run:
           name: Build frontend
@@ -74,9 +68,6 @@ jobs:
       - restore_cache:
           keys:
             - v1-deps-{{ checksum "pnpm-lock.yaml" }}
-      - run:
-          name: Install dev tools 
-          command: pnpm install --ignore-scripts
       - run:
           name: Build backend
           command: pnpm exec nx build backend
