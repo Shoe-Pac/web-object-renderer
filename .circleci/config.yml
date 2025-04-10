@@ -29,6 +29,9 @@ jobs:
           keys:
             - v1-deps-{{ checksum "pnpm-lock.yaml" }}
       - run:
+          name: Install dependencies
+          command: pnpm install --frozen-lockfile
+      - run:
           name: Run Playwright E2E tests
           command: npx playwright test apps/frontend-e2e/src --config=apps/frontend-e2e/playwright.config.ts
       - store_artifacts:
