@@ -33,6 +33,9 @@ jobs:
           command: pnpm install --ignore-scripts
       - run:
           name: Install Playwright Browsers
+          command: pnpm exec playwright install
+      - run:
+          name: Install Playwright Browsers Deps
           command: pnpm exec playwright install-deps
       - run:
           name: Run Playwright E2E tests
