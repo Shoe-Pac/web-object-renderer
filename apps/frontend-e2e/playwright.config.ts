@@ -25,7 +25,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'pnpm exec nx run frontend:preview',
-    url: 'http://localhost:4300',
+    url: baseURL,
     reuseExistingServer: !process.env.CI,
     cwd: workspaceRoot
   },
@@ -64,5 +64,12 @@ export default defineConfig({
       name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     } */
+  ],
+  reporter: [
+    ['list'], // za detaljan prikaz svakog testa u terminalu
+    [
+      'html',
+      { outputFolder: 'dist/.playwright/apps/frontend-e2e/playwright-report', open: 'never' }
+    ]
   ]
 })

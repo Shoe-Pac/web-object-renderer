@@ -37,7 +37,7 @@ jobs:
       #     command: pnpm exec nx run backend:test
       - run:
           name: Run Playwright E2E tests
-          command: pnpm exec nx run frontend-e2e:e2e || (mkdir -p playwright-report && mv frontend-e2e/playwright-report/* playwright-report/ && exit 1)
+          command: pnpm exec nx run frontend-e2e:e2e
       - store_artifacts:
           path: playwright-report
           destination: playwright-report

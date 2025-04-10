@@ -194,7 +194,15 @@ The project supports hot reloading (watch mode) for both frontend and backend, e
 For production, backend is built with **esbuild** and run using **Node.js** .
 
 ### Testing
-Jest is used for unit backend tests and Playwright for E2E frontend and backend tests.
+Jest is used for unit backend tests and Playwright for E2E frontend and backend tests. From root of the monorepo
+- **Run frontend tests**
+  ```sh
+  pnpm exec nx run frontend-e2e:e2e
+  ```
+- **See detailed test reports:**
+  ```sh
+  pnpm exec playwright show-report dist/.playwright/apps/frontend-e2e/playwright-report
+  ```
 - **Run all tests:**
   ```sh
   pnpx nx run-many --target=test --all
