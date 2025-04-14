@@ -17,7 +17,7 @@ export default defineConfig({
         host: "0.0.0.0",  // Ovo omogućava pristup s bilo koje IP adrese
         allowedHosts: ["localhost", ".ngrok-free.app", '.onrender.com'] // Dozvoljava localhost i sve ngrok domene
     },
-    plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(["*.md"])],
+    plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(["*.md", "static.json"])],
     // Uncomment this if you are using workers.
     // worker: {
     //  plugins: [ nxViteTsPaths() ],
