@@ -104,3 +104,7 @@ export const logout = async (_: FastifyRequest, reply: FastifyReply) => {
 
   return reply.send({ message: 'Logged out' })
 }
+
+export const ping = async (_: FastifyRequest, reply: FastifyReply) => {
+  return reply.send({ status: 'ok' })
+}
