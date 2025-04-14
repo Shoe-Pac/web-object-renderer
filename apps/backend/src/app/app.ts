@@ -13,9 +13,10 @@ const app = Fastify({ logger: true, trustProxy: true })
 // CORS middleware
 app.register(cors, {
   origin: [
-    'https://web-object-renderer.onrender.com',
     'http://localhost:4001',
-    'https://b7fc-188-129-80-141.ngrok-free.app'
+    'https://web-object-renderer.onrender.com',
+    'https://b7fc-188-129-80-141.ngrok-free.app', //ngrok tunnel for testing and development purpose
+    'https://uptimerobot.com' //UptimeRobot pinging service for keeping backend always alive
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
