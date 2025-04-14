@@ -10,7 +10,7 @@ export default defineConfig({
     server: {
         port: 4001,
         host: "0.0.0.0",  // Ovo omogućava pristup s bilo koje IP adrese
-        allowedHosts: ["localhost", ".ngrok-free.app", 'web-object-renderer.onrender.com'] // Dozvoljava localhost i sve ngrok domene
+        allowedHosts: ["localhost", ".ngrok-free.app", '.onrender.com'] // Dozvoljava localhost i sve ngrok domene
     },
     preview: {
         port: 4300,
