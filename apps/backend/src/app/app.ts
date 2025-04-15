@@ -15,6 +15,8 @@ app.register(cors, {
   origin: [
     'http://localhost:4001',
     'https://web-object-renderer.onrender.com',
+    'http://web-object-renderer.online',
+    'http://web-object-render.online',
     'https://wor-0ovu.onrender.com', //Static Site instead of Web Service deployed on Render
     'https://b7fc-188-129-80-141.ngrok-free.app', //ngrok tunnel for testing and development purpose
     'https://uptimerobot.com' //UptimeRobot pinging service for keeping backend always alive
@@ -24,12 +26,6 @@ app.register(cors, {
   allowedHeaders: ['Content-Type', 'Authorization'],
   preflight: true,
   strictPreflight: false
-})
-
-app.addHook('onSend', async (_request, reply, payload) => {
-  console.log('Response Headers:', reply.getHeaders())
-
-  return payload
 })
 
 // Multipart middleware
