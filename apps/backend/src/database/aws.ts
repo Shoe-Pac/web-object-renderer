@@ -1,4 +1,9 @@
-import { DeleteObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
+import {
+  CopyObjectCommand,
+  DeleteObjectCommand,
+  PutObjectCommand,
+  S3Client
+} from '@aws-sdk/client-s3'
 import { MultipartFile } from '@fastify/multipart'
 import * as dotenv from 'dotenv'
 
@@ -27,6 +32,44 @@ const s3 = new S3Client({
 })
 
 export default s3
+
+const copyExampleModelToUserFolder = async (userName: string) => {
+  const bucketName = process.env.AWS_BUCKET_NAME
+  const region = process.env.AWS_REGION
+
+  if (!bucketName) {
+    throw new Error('AWS_BUCKET_NAME is not defined')
+  }
+
+  const safeUsername = userName.replace(/\s+/g, '-')
+  const sourceKey = `uploads/ExampleCat.obj`
+  const destinationKey = `uploads/${safeUsername}/Animals/Cat.obj`
+
+  const copyParams = {
+    Bucket: bucketName,
+    CopySource: `${bucketName}/${sourceKey}`,
+    Key: destinationKey,
+    ContentType: 'model/obj'
+  }
+
+  try {
+    await s3.send(new CopyObjectCommand(copyParams))
+
+    const fileUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${destinationKey}`
+
+    return {
+      filename: 'Cat.obj',
+      fileUrl,
+      name: 'Cat',
+      category: 'Animals',
+      uploadedAt: new Date()
+    }
+  } catch (err) {
+    console.error('Error copying example model:', err)
+
+    return null
+  }
+}
 
 const uploadObjFileToAws = async (
   file: MultipartFile,
@@ -177,4 +220,4 @@ const removeModelsFromAws = async (filesToDelete: FileMetadata[]) => {
   )
 }
 
-export { removeModelsFromAws, uploadImageToAws, uploadObjFileToAws }
+export { copyExampleModelToUserFolder, removeModelsFromAws, uploadImageToAws, uploadObjFileToAws }

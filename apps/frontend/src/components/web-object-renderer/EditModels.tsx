@@ -213,7 +213,7 @@ const EditModels: React.FC<EditModelsProps> = ({ refreshScene, availableModels }
                         fullWidth
                         sx={{ mt: 2, marginTop: 3 }}
                       >
-                        Choose File
+                        Choose .obj File
                       </Button>
                     </label>
                     {field.value && (

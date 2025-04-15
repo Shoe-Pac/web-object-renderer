@@ -5,7 +5,7 @@ WOR is a full-stack application that enables the visualization and manipulation 
 The application is also wrapped with user registration, login, authentication, and profile data modification.
 
 
-A **demo version** of the application is publicly available at [this link](https://web-object-renderer.onrender.com/), and it can also be run locally ( see instructions below ).
+A **demo version** of the application is publicly available at [this link](https://web-object-renderer.online), and it can also be run locally ( see instructions below ).
 
 The **main motivation** behind this repository is to play with and showcase the possible use of various modern and relevant technologies in the software engineering industry. The repository should be viewed as an experimental playground where different technologies are intentionally used to achieve similar functionalities, often without strict (technical) consistency, but in the same time consistent in coding as much as possible.
 
