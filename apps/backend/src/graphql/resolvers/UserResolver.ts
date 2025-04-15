@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcryptjs'
 import { Arg, Mutation, Query, Resolver } from 'type-graphql'
 
-import { removeModelsFromAws } from '../../database/aws'
+import { copyExampleModelToUserFolder, removeModelsFromAws } from '../../database/aws'
 import UserModel from '../../database/models/User'
 import { FileMetadataInput } from '../inputs/FileMetadataInput'
 import { UserResponse } from '../types/UserResponse'
@@ -33,6 +33,13 @@ export class UserResolver {
       profileImage: '',
       fileMetadata: []
     })
+
+    // Copy example model and add metadata
+    const exampleFileMetadata = await copyExampleModelToUserFolder(name)
+
+    if (exampleFileMetadata) {
+      user.fileMetadata.push(exampleFileMetadata)
+    }
 
     await user.save()
 

@@ -31,6 +31,7 @@
         .subtitle {
             font-size: 25px;
             fill: url(#gradient);
+            letter-spacing: 1.3px;
         }
     </style>
     <defs>
@@ -40,16 +41,14 @@
         </linearGradient>
     </defs>
 
-    <!-- 3D efekt za naslov -->
+    <!-- 3D effect for title -->
     <text class="title" x="160" y="40" style="fill: rgba(0, 0, 0, 0.1); transform: translate(6px, 6px);" > W O R </text>
     <text class="title" x="160" y="40" style="fill: rgba(87, 85, 85, 0.2); transform: translate(5px, 5px);" > W O R </text>
     <text class="title" x="160" y="40" style="fill: rgba(135, 132, 132, 0.2); transform: translate(4px, 4px);" > W O R </text>
     <text class="title" x="160" y="40" style="fill: rgba(186, 183, 183, 0.2); transform: translate(3px, 3px);" > W O R </text>
     <text class="title" x="160" y="40" style="fill: rgba(241, 237, 237, 0.3); transform: translate(2px, 2px);" > W O R </text>
     <text class="title" x="160" y="40" style="fill: rgba(255, 254, 254, 0.3); transform: translate(1px,1px);" > W O R </text>
-
     <text class="title" x="160" y="40" fill="url(#gradient)"> W O R </text>
 
-    <!-- Podnaslov -->
-    <text class="subtitle" x="160" y="70"> Web Object Renderer </text>
+    <text class="subtitle" x="167" y="70"> Web Object Renderer </text>
 </svg>
