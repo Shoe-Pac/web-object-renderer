@@ -220,7 +220,7 @@ const Profile = memo(() => {
       })
 
       setSelectedFile(file)
-      // Prikazujemo privremeno novu sliku
+      //Show temporary new image
       const reader = new FileReader()
 
       reader.onloadend = () => {
@@ -242,7 +242,10 @@ const Profile = memo(() => {
         alignItems: 'start',
         gap: '40px',
         background: '#171717',
-        height: '100vh'
+        minHeight: '100vh',
+        width: '100%',
+        paddingBottom: '60px',
+        overscrollBehavior: 'none'
       }}
     >
       <Header />
