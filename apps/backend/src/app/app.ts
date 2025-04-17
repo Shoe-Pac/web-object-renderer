@@ -43,6 +43,18 @@ app.register(fastifyCookie, {
   }
 })
 
+//Enhance SEO and security
+app.addHook('onSend', async (_request, reply, payload) => {
+  reply.header('Link', '<https://web-object-renderer.online>; rel="canonical"')
+  reply.header('X-Robots-Tag', 'index, follow')
+  reply.header(
+    'Content-Security-Policy',
+    "default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self';"
+  )
+
+  return payload
+})
+
 app.register(jwt, { secret: config.jwtSecret })
 
 //REST routes registration
