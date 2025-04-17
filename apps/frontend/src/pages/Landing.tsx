@@ -171,15 +171,19 @@ const dotLargeB = css`
 const mainContainerStyle = css`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 `
 const loginContainerStyle = css`
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: #171717;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
 `
 
 const descriptionStyle = css`
