@@ -207,7 +207,7 @@ const tweakPaneStyle = css`
   //Mobile responsive
   @media (max-width: 768px) {
     top: auto;
-    bottom: 20px;
+    bottom: 60px;
     right: 20px;
     left: 20px;
     max-width: calc(100% - 40px);

@@ -11,7 +11,9 @@ import AuthProvider from '../contexts/Auth'
 import SnackBarProvider from '../contexts/SnackBar'
 import Error from '../pages/Error'
 import Home from '../pages/Home'
+import Landing from '../pages/Landing'
 import Login from '../pages/Login'
+import PrivacyPolicy from '../pages/PrivacyPolicy'
 import Profile from '../pages/Profile'
 import Register from '../pages/Register'
 import globalStyles from '../styles/globalStyles'
@@ -21,7 +23,21 @@ import muiTheme from '../styles/theme-mui'
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <Landing />,
+    errorElement: <Error />
+  },
+  {
+    path: '/login',
     element: <Login />,
+    errorElement: <Error />
+  },
+  {
+    path: '/register',
+    element: <Register />
+  },
+  {
+    path: '/privacy-policy',
+    element: <PrivacyPolicy />,
     errorElement: <Error />
   },
   {
@@ -39,10 +55,6 @@ const router = createBrowserRouter([
         <Profile />
       </ProtectedRoute>
     )
-  },
-  {
-    path: '/register',
-    element: <Register />
   }
 ])
 

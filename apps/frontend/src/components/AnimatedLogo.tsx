@@ -13,17 +13,33 @@ const containerStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50%;
   width: 50%;
+  margin-bottom: 20%;
+
+  //Mobile responsive
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 5%;
+  }
 `
 
 const logoStyle = css`
   position: absolute;
-  top: 10%;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
   height: 50%;
+
+  //Mobile responsive
+  @media (max-width: 768px) {
+    position: relative;
+    margin-top: 14%;
+    width: 85%;
+    height: 100%;
+    left: 43%;
+  }
 `
 
 export default AnimatedLogo

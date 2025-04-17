@@ -1,11 +1,13 @@
 import { css } from '@emotion/react'
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 
 import profile from '../assets/profile.jpg'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Button from '../components/ui/Button'
 import Form from '../components/ui/Form'
 import Input from '../components/ui/Input'
+import WireframeBackground from '../components/ui/WireFrameBackground'
 import useAuth from '../hooks/useAuth'
 import useGetUser from '../hooks/useGetUser'
 import useSnackBar from '../hooks/useSnackBar'
@@ -235,22 +237,11 @@ const Profile = memo(() => {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'start',
-        gap: '40px',
-        background: '#171717',
-        minHeight: '100vh',
-        width: '100%',
-        paddingBottom: '60px',
-        overscrollBehavior: 'none'
-      }}
-    >
+    <div css={pageContainerStyle}>
       <Header />
-      <div css={formStyle}>
-        <Form>
+      <div css={contentContainerStyle}>
+        <WireframeBackground />
+        <Form css={isEditing ? saveFormStyle : editFormStyle}>
           <h2
             style={{
               color: 'white',
@@ -385,15 +376,48 @@ const Profile = memo(() => {
             </>
           )}
           {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
-          <Button primary css={buttonStyle} type="button" fullWidth onClick={handleEditClick}>
+          <Button
+            primary
+            css={isEditing ? saveButtonStyle : editButtonStyle}
+            type="button"
+            fullWidth
+            onClick={handleEditClick}
+          >
             {isEditing ? 'Save' : 'Edit'}
           </Button>
         </Form>
       </div>
+      <div css={profileFooterWrapperStyle}>
+        <Footer />
+      </div>
     </div>
   )
 })
+const profileFooterWrapperStyle = css`
+  width: 100%;
+  margin-top: auto;
 
+  //Override sticky position from Footer component
+  footer {
+    position: static !important;
+  }
+`
+const pageContainerStyle = css`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`
+const contentContainerStyle = css`
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  background: #171717;
+  width: 100%;
+  padding-bottom: 0px;
+`
 const imgStyle = css`
   width: 120px;
   height: 120px;
@@ -417,12 +441,63 @@ const labelStyle = css`
   font-size: 14px;
 `
 
-const formStyle = css`
-  margin-top: 100px;
+const saveButtonStyle = css`
+  background: linear-gradient(90deg, #3399ff, #00ff99);
+  color: #1e1e1e;
+  border-radius: 8px;
+  &:hover {
+    box-shadow: 0px 0px 10px #00ff99;
+  }
+  margin-top: 28px;
+
+  &:disabled {
+    background: rgb(33 33 33);
+    color: rgba(0, 0, 0, 0.26);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
 `
 
-const buttonStyle = css`
-  margin-top: 35px;
+const editFormStyle = css`
+  box-shadow: 0px 0px 12px rgb(51, 153, 255);
+  margin-top: 100px;
+  z-index: 2;
+
+  //Mobile responsive
+  @media (max-width: 768px) {
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+`
+const saveFormStyle = css`
+  box-shadow: 0px 0px 10px #00ff99;
+  margin-top: 70px;
+  z-index: 2;
+  margin-bottom: 20px;
+
+  //Mobile responsive
+  @media (max-width: 768px) {
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+`
+
+const editButtonStyle = css`
+  background: linear-gradient(90deg, #ff4d4d, #aa00ff);
+  color: #1e1e1e;
+  border-radius: 8px;
+  margin-top: 24px;
+
+  &:hover {
+    box-shadow: 0px 0px 12px rgba(255, 77, 77, 0.8);
+  }
+
+  &:disabled {
+    background: rgb(33 33 33);
+    color: rgba(0, 0, 0, 0.26);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
 `
 
 const disabledInputStyle = css`
