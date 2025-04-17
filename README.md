@@ -5,9 +5,10 @@ WOR is a full-stack application that enables the visualization and manipulation 
 The application is also wrapped with user registration, login, authentication, and profile data modification.
 
 
-A **demo version** of the application is publicly available at [this link](https://web-object-renderer.online), and it can also be run locally ( see instructions below ).
+A **demo version** of the application is publicly available at [web-object-renderer.online](https://web-object-renderer.online), and it can also be run locally ( see instructions below ). Furthermore, little  **SEO optimisation** for the sake of Google Safe Browsing is also implemented. 
+Note: Safari browser is currently not supported due to pending optimizations in the backend authentication API.
 
-The **main motivation** behind this repository is to play with and showcase the possible use of various modern and relevant technologies in the software engineering industry. The repository should be viewed as an experimental playground where different technologies are intentionally used to achieve similar functionalities, often without strict (technical) consistency, but in the same time consistent in coding as much as possible.
+The **main motivation** behind this repository is to play with and showcase the possible use of various modern and relevant technologies in the software engineering industry. The repository should be viewed as an experimental playground where various technologies are intentionally used to achieve similar functionalities, sometimes without strict technical consistency, but in the same time consistent in coding as much as possible.
 
 This is still a **work in progress** project.
 
@@ -41,7 +42,7 @@ The frontend is built with:
 - **Apollo Client** for state management, alongside **React Context API**
 - **Three.js** + **Tweakpane** for rendering and manipulating 3D object models
 
-The frontend application explores different approaches to styling and state management, illustrating the flexibility of modern React development.
+The frontend application explores multiple approaches to styling and state management, demonstrating the flexibility of modern React development.
 
 ---
 
@@ -51,7 +52,8 @@ The backend is implemented using:
 - **MongoDB** + **AWS S3** cloud storage
 - **TypeGraphQL** and **Typegoose** for interacting with MongoDB
 - Support for both **GraphQL API** and **REST API** endpoints
-- **JWT middleware** for authentication and verification via HTTP cookies
+- **JWT-based middleware** for authentication and session verification using HTTP cookies
+- **CircleCI** and **Render** for CI/CD, also **UptimeRobot** for constantly keeping awake Render deployments
 
 The backend showcases various techniques in API development, authentication, and data storage while leveraging TypeScript for type safety.
 
@@ -65,7 +67,7 @@ After installing project dependencies with `pnpm` (or similar) and before runnin
 1. Create an AWS S3 bucket.
 2. Generate **AWS access keys** for programmatic access.
 3. Define these keys in the backend application's `.env` file
-4. Configure S3 bucket permission policies ( cors, read/write access etc. )
+4. Configure your S3 bucket permissions, including CORS settings and read/write access policies.
 ```sh
 CORS configuration json example: 
 
@@ -235,19 +237,17 @@ npx eslint . --fix
 ## TO-DO Tasks
 ### Frontend (FE)
 - Ensure only **unique** files (by name, etc.) are selected and uploaded to the cloud and MongoDB.
+- Code refactor - extract and implement common layout with fixed footer and similar.
 
 ### Backend (BE)
 - Implement **worker processes** for key Three.js-related operations.
-- Deploy the application on **Vercel** or a similar hosting platform for public access.
-- Implement **CI/CD pipeline** for automated testing and deployment.
+- Safari support ( auth currently doesn't work - different approach for cookies and token handling ).
 
 ### Fullstack (General)
 - Implement **E2E and unit tests** using **Playwright** or a similar framework.
 - Ensure **data validation** and unique data storage.
 - Improve **clean code practices**, error handling, and **TypeScript typing** for a real production environment.
 
-- **Finish CI setup:**
-  [Click here to finish setting up your workspace!](https://cloud.nx.app/connect/tnc3qxhvqg)
 
 ---
 

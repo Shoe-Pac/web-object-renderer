@@ -110,8 +110,8 @@ const WebObjectRenderer: React.FC = () => {
 
 const containerStyle = css`
   position: relative;
-  z-index: 2;
   background: #171717;
+  flex: 1;
 `
 
 export default WebObjectRenderer

@@ -1,11 +1,13 @@
 import { css } from '@emotion/react'
 import { FormEvent, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { Link, useNavigate } from 'react-router-dom'
 
-import AnimatedLogo from '../components/AnimatedLogo'
+import Footer from '../components/Footer'
 import Button from '../components/ui/Button'
 import Form from '../components/ui/Form'
 import Input from '../components/ui/Input'
+import WireframeBackground from '../components/ui/WireFrameBackground'
 import useCreateUser from '../hooks/useCreateUser'
 import useSnackBar from '../hooks/useSnackBar'
 import {
@@ -85,86 +87,123 @@ const Register = () => {
   }
 
   return (
-    <div css={registerContainerStyle}>
-      <AnimatedLogo />
-
-      <Form onSubmit={registerUser}>
-        <h1
-          style={{
-            color: 'white',
-            textAlign: 'center',
-            marginBottom: '10px'
-          }}
-        >
-          Register
-        </h1>
-
-        <Input name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
-        {fieldErrors.name && <p style={{ color: 'red', fontSize: '12px' }}>{fieldErrors.name}</p>}
-
-        <Input
-          name="email"
-          type="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          autoComplete="email"
+    <div css={mainContainerStyle}>
+      <WireframeBackground />
+      <Helmet>
+        <title>Register | WOR</title>
+        <meta
+          name="description"
+          content="Create your account on Web Object Renderer – a secure platform for interacting with 3D .obj models in real-time."
         />
-        {fieldErrors.email && <p style={{ color: 'red', fontSize: '12px' }}>{fieldErrors.email}</p>}
+        <meta name="robots" content="index, follow" />
+      </Helmet>
 
-        <Input
-          name="password"
-          type={showPassword ? 'text' : 'password'}
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          autoComplete="password"
-        />
-        {fieldErrors.password && (
-          <p style={{ color: 'red', fontSize: '12px' }}>{fieldErrors.password}</p>
-        )}
-
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: '4px',
-            marginTop: '4px'
-          }}
+      <div css={registerContainerStyle}>
+        <Form
+          onSubmit={registerUser}
+          style={{ zIndex: 2, boxShadow: '0px 0px 10px rgb(0, 255, 153)' }}
         >
-          <input
-            type="checkbox"
-            checked={showPassword}
-            onChange={() => setShowPassword(!showPassword)}
-          />
-          <label
+          <h1
             style={{
               color: 'white',
-              marginLeft: '5px',
-              fontSize: '14px'
+              textAlign: 'center',
+              marginBottom: '10px'
             }}
           >
-            {' '}
-            Show Password
-          </label>
-        </div>
+            Register
+          </h1>
 
-        {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
+          <Input name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
+          {fieldErrors.name && <p style={{ color: 'red', fontSize: '12px' }}>{fieldErrors.name}</p>}
 
-        <Button primary fullWidth type="submit">
-          Register
-        </Button>
+          <Input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            autoComplete="email"
+          />
+          {fieldErrors.email && (
+            <p style={{ color: 'red', fontSize: '12px' }}>{fieldErrors.email}</p>
+          )}
 
-        <p style={{ color: 'white', textAlign: 'center' }}>
-          Already have an account?{' '}
-          <Link to="/" style={{ color: '#3b82f6' }}>
-            Login
-          </Link>
-        </p>
-      </Form>
+          <Input
+            name="password"
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            autoComplete="password"
+          />
+          {fieldErrors.password && (
+            <p style={{ color: 'red', fontSize: '12px' }}>{fieldErrors.password}</p>
+          )}
+
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '4px',
+              marginTop: '4px'
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+            />
+            <label
+              style={{
+                color: 'white',
+                marginLeft: '5px',
+                fontSize: '14px'
+              }}
+            >
+              {' '}
+              Show Password
+            </label>
+          </div>
+
+          {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
+
+          <Button primary fullWidth type="submit" css={buttonStyle}>
+            Register
+          </Button>
+
+          <p style={{ color: 'white', textAlign: 'center' }}>
+            Already have an account?{' '}
+            <Link to="/login" style={{ color: '#3b82f6' }}>
+              Login
+            </Link>
+          </p>
+          <p css={disclaimerStyle}>
+            This platform is intended for secure and safe use by developers and 3D artists. No
+            harmful content is distributed or collected. For more information, visit our{' '}
+            <Link to="/privacy-policy" style={{ color: '#3b82f6' }}>
+              Privacy Policy
+            </Link>
+            .
+          </p>
+        </Form>
+      </div>
+      <Footer />
     </div>
   )
 }
+
+const mainContainerStyle = css`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`
+const buttonStyle = css`
+  background: rgba(0, 255, 153, 0.86);
+  color: white;
+  border-radius: 8px;
+  margin-top: 8px;
+`
 
 const registerContainerStyle = css`
   display: flex;
@@ -174,6 +213,15 @@ const registerContainerStyle = css`
   height: 100%;
   width: 100%;
   background: #171717;
+  // z-index: 2;
+`
+const disclaimerStyle = css`
+  font-size: 0.75rem;
+  color: #888;
+  text-align: center;
+  margin-top: 16px;
+  max-width: 400px;
+  line-height: 1.4;
 `
 
 export default Register
