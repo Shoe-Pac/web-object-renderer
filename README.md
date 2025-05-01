@@ -238,15 +238,34 @@ npx eslint . --fix
 ### Frontend (FE)
 - Ensure only **unique** files (by name, etc.) are selected and uploaded to the cloud and MongoDB.
 - Code refactor - extract and implement common layout with fixed footer and similar.
+- Add loading animation while starting/loading .obj model into the threejs engine ( particulary important for larger models that take more time )
+- Zoom is currently limited -> consider to done it more dynamiclly because of large models use case scenario and similar when zoom becomes to weak
+- Add head SEO tags ( name, description, keywords )
+- Add honeypot form filed to prevent bots
+- Repeat password form fields
+- Remove error information about which field is wrong ( "wrong password", "wrong email" ) -> easier to attack ( securityu improvement )
+- Add file limit to 80MB or similar for model .obj file upload 
 
 ### Backend (BE)
+- Use class-validator (or Zod, io-ts) to validate input data in REST and GraphQL resolvers -> currently, controllers only parse multipart or JSON, but without detailed validation of object shapes.
+- Clear DTOs (Data Transfer Objects) for each endpoint/GraphQL mutation -> in TypeGraphQL we define @InputType(), and in REST it can be defined request body interfaces and schema.
+- Error handling and centralization of logic -> introducing a central error handler in Fastify (hook setErrorHandler) that maps all errors to a standardized JSON response with status, error code and message. In GraphQL, use a custom formatError to leave improper stack traces on the server, and return only a useful message to the client.
+- Observability and monitoring  -> Integrate structured logging (e.g. Pino) ​​instead of console.log, with JSON output and log levels (info, warn, error). 
+  -> Consider metrics (Prometheus) and a health-check endpoint (Fastify plugin @fastify/terminus) for readiness/liveness probes.
+- Security and configuration -> Separate secrets (AWS keys, JWT secret) into a secret manager (e.g. AWS Secrets Manager) or use Vault.
+  -> Add rate limiting (Fastify Rate Limit) to sensitive routes such as login and upload.
+- AWS S3 and Performance -> Instead of server-side uploading via SDK, consider presigned URLs: the client uploads directly to S3, the server just creates the signed URL and stores the metadata.
+  -> Isolate all AWS operations in service or repository layer to make code easier to test and mock.
 - Implement **worker processes** for key Three.js-related operations.
 - Safari support ( auth currently doesn't work - different approach for cookies and token handling ).
+- Architecture and Scalability -> Separate services and resolvers from the HTTP layer itself (maybe use a “service layer”) to keep the code DRY and easier to maintain.
+  -> Consider introducing pagination and indexing in MongoDB, and caching (Redis) for the most common queries.
 
 ### Fullstack (General)
 - Implement **E2E and unit tests** using **Playwright** or a similar framework.
 - Ensure **data validation** and unique data storage.
 - Improve **clean code practices**, error handling, and **TypeScript typing** for a real production environment.
+- "Guest mode" by default -> from landing page allow demo using app without login ("Continue as guest" button) -> model saving and similar features are disabled
 
 
 ---
