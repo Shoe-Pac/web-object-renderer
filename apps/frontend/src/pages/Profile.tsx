@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { memo, useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 
 import profile from '../assets/profile.jpg'
 import Footer from '../components/Footer'
