@@ -244,9 +244,13 @@ npx eslint . --fix
 - Add honeypot form filed to prevent bots
 - Repeat password form fields
 - Remove error information about which field is wrong ( "wrong password", "wrong email" ) -> easier to attack ( securityu improvement )
-- Add file limit to 80MB or similar for model .obj file upload 
+- Add file limit to 80MB or similar for model .obj file upload
+- Implement lazy loading and code splitting (eg Profile component is a good candidate)
+- Double check where to type components to React.FC
+- Double check if Profile component is good candidate for implementing memo
 
 ### Backend (BE)
+- Use presignedUrls for uploading object (model) files and images to S3 AWS -> improved security
 - Use class-validator (or Zod, io-ts) to validate input data in REST and GraphQL resolvers -> currently, controllers only parse multipart or JSON, but without detailed validation of object shapes.
 - Clear DTOs (Data Transfer Objects) for each endpoint/GraphQL mutation -> in TypeGraphQL we define @InputType(), and in REST it can be defined request body interfaces and schema.
 - Error handling and centralization of logic -> introducing a central error handler in Fastify (hook setErrorHandler) that maps all errors to a standardized JSON response with status, error code and message. In GraphQL, use a custom formatError to leave improper stack traces on the server, and return only a useful message to the client.
@@ -266,7 +270,9 @@ npx eslint . --fix
 - Ensure **data validation** and unique data storage.
 - Improve **clean code practices**, error handling, and **TypeScript typing** for a real production environment.
 - "Guest mode" by default -> from landing page allow demo using app without login ("Continue as guest" button) -> model saving and similar features are disabled
-
+- Refactor project arhitecture to be featured based -> eg. /features->/viewer,uploads, models/components,hooks,graphql..; /shared->/ui,utils...
+- Use "Authorization: Bearer <jwt token>" header instead of cookie session -> improved security
+- Rename login to authenticate and authenticate to authorize
 
 ---
 
